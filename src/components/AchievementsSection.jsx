@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Code2, Database, ExternalLink, Shield, Video, Linkedin, DollarSign, X } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
 
 const achievementsIcons = {
   developer: <Code2 className="w-6 h-6 text-blue-400" />,
@@ -122,9 +121,14 @@ const AchievementsSection = ({
           }
 
           return (
-            <ScrollReveal key={title} delay={idx * 80} className="h-full">
+            <div
+              key={title}
+              data-aos="fade-up"
+              data-aos-delay={idx * 80}
+              className="h-full"
+            >
               {Card}
-            </ScrollReveal>
+            </div>
           );
         })}
       </div>

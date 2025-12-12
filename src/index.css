@@ -8,18 +8,6 @@
     animation-fill-mode: both;
   }
 
-  .scroll-fade-up {
-    opacity: 0;
-    transform: translateY(1.25rem);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-    will-change: opacity, transform;
-  }
-
-  .scroll-fade-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   .fade-in {
     animation-name: fadeIn;
   }
@@ -35,13 +23,6 @@
   @keyframes slideInFromBottom {
     from { transform: translateY(1rem); }
     to { transform: translateY(0); }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-fade-up {
-    transform: none;
-    transition-duration: 0.3s;
   }
 }
 

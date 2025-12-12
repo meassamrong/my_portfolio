@@ -1,7 +1,6 @@
 import { Box, Database, Github, Server } from "lucide-react";
 import TechIcons from "./TechIcons";
 import ProjectCard from "./ProjectCard";
-import ScrollReveal from "./ScrollReveal";
 
 const ProjectsSection = ({
   projects,
@@ -21,9 +20,14 @@ const ProjectsSection = ({
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map((project, idx) => (
-        <ScrollReveal key={project.title} delay={idx * 100} className="h-full">
+        <div
+          key={project.title}
+          data-aos="fade-up"
+          data-aos-delay={idx * 100}
+          className="h-full"
+        >
           <ProjectCard {...project} ctaLabels={ctaLabels} />
-        </ScrollReveal>
+        </div>
       ))}
     </div>
   </section>

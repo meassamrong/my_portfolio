@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from "react";
-import { Database, Layout, Server, Terminal } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import AOS from "aos";
+import { ArrowUp, Database, Layout, Server, Terminal } from "lucide-react";
 import AchievementsSection from "./components/AchievementsSection";
 import ExperienceSection from "./components/ExperienceSection";
 import FooterCTA from "./components/FooterCTA";
@@ -10,7 +11,6 @@ import ProjectsSection, {
   projectTechIcons,
 } from "./components/ProjectsSection";
 import SkillsSection from "./components/SkillsSection";
-import ScrollReveal from "./components/ScrollReveal";
 import TechIcons from "./components/TechIcons";
 import HobbySection from "./components/HobbySection";
 import MyPhoto from "./assets/meassamrong_photo.jpg";
@@ -360,19 +360,23 @@ const translations = {
       {
         name: "Coding",
         emoji: "💻",
-        description: "Building side projects and experimenting with new frameworks.",
-        image: "https://placehold.co/600x400/0f172a/22c55e?text=Code+Playground",
+        description:
+          "Building side projects and experimenting with new frameworks.",
+        image:
+          "https://placehold.co/600x400/0f172a/22c55e?text=Code+Playground",
       },
       {
         name: "Tech Research",
         emoji: "🔬",
-        description: "Reading about emerging technologies and testing new tools.",
+        description:
+          "Reading about emerging technologies and testing new tools.",
         image: "https://placehold.co/600x400/111827/3b82f6?text=Research+Notes",
       },
       {
         name: "Gaming",
         emoji: "🎮",
-        description: "Competitive matches and cooperative adventures with friends.",
+        description:
+          "Competitive matches and cooperative adventures with friends.",
         image: "https://placehold.co/600x400/0b1120/f97316?text=Gaming+Session",
       },
       {
@@ -763,12 +767,14 @@ const translations = {
         name: "Coding",
         emoji: "💻",
         description: "សរសេរកូដ និងសាកល្បងបណ្ណាល័យថ្មីៗ។",
-        image: "https://placehold.co/600x400/0f172a/22c55e?text=Code+Playground",
+        image:
+          "https://placehold.co/600x400/0f172a/22c55e?text=Code+Playground",
       },
       {
         name: "Tech Research",
         emoji: "🔬",
-        description: "ស្វែងយល់អំពីបច្ចេកវិទ្យាថ្មី និងការប្រើប្រាស់ឧបករណ៍ថ្មីៗ។",
+        description:
+          "ស្វែងយល់អំពីបច្ចេកវិទ្យាថ្មី និងការប្រើប្រាស់ឧបករណ៍ថ្មីៗ។",
         image: "https://placehold.co/600x400/111827/3b82f6?text=Research+Notes",
       },
       {
@@ -780,13 +786,15 @@ const translations = {
       {
         name: "កីឡាបាល់ទាត់",
         emoji: "⚽",
-        description: "លេងបាល់ទាត់ថ្ងៃចុងសប្ដាហ៍ ដើម្បីរក្សាសុខភាព និងសន្និបាតជាក្រុម។",
+        description:
+          "លេងបាល់ទាត់ថ្ងៃចុងសប្ដាហ៍ ដើម្បីរក្សាសុខភាព និងសន្និបាតជាក្រុម។",
         image: "https://placehold.co/600x400/0f172a/22c55e?text=Football+Field",
       },
       {
         name: "ជិះកង់",
         emoji: "🚴",
-        description: "ជិះកង់ក្នុងទីក្រុង ដើម្បីសិក្សាផ្លូវថ្មីៗ និងសម្រាកខ្លួន។",
+        description:
+          "ជិះកង់ក្នុងទីក្រុង ដើម្បីសិក្សាផ្លូវថ្មីៗ និងសម្រាកខ្លួន។",
         image: "https://placehold.co/600x400/111827/38bdf8?text=City+Ride",
       },
       {
@@ -850,8 +858,24 @@ const translations = {
 
 const App = () => {
   const [language, setLanguage] = useState("en");
+  const [showTopButton, setShowTopButton] = useState(false);
   const active = translations[language];
   const isKhmer = language === "km";
+
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 40,
+    });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setShowTopButton(window.scrollY > 280);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const githubStats = useMemo(
     () => githubDefaultStats(active.github.statLabels),
@@ -875,46 +899,60 @@ const App = () => {
           socials={defaultSocials}
           ctaLabel={active.labels.heroContact}
         />
-        <ScrollReveal>
+        <div data-aos="fade-up">
           <ExperienceSection
             experiences={active.experiences}
             title={active.labels.experienceTitle}
           />
-        </ScrollReveal>
-        <ScrollReveal>
+        </div>
+        <div data-aos="fade-up">
           <SkillsSection
             skills={buildSkills()}
             title={active.labels.skillsTitle}
           />
-        </ScrollReveal>
-        <ScrollReveal>
+        </div>
+        <div data-aos="fade-up">
           <ProjectsSection
             projects={active.projects}
             title={active.labels.projectsTitle}
             ctaLabels={active.projectCtas}
           />
-        </ScrollReveal>
-        <ScrollReveal>
+        </div>
+        <div data-aos="fade-up">
           <AchievementsSection
             achievements={active.achievements}
             title={active.labels.achievementsTitle}
             certificateLabel={active.achievementsCta.certificate}
           />
-        </ScrollReveal>
-        <ScrollReveal>
+        </div>
+        <div data-aos="fade-up">
           <GithubSection stats={githubStats} copy={active.github} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <HobbySection hobbies={active.hobbies} title={active.labels.hobbiesTitle} />
-        </ScrollReveal>
-        <ScrollReveal>
+        </div>
+        <div data-aos="fade-up">
+          <HobbySection
+            hobbies={active.hobbies}
+            title={active.labels.hobbiesTitle}
+          />
+        </div>
+        <div data-aos="fade-up">
           <FooterCTA
             email={active.profile.email}
             resumeUrl={active.resumeUrl}
             copy={active.footer}
           />
-        </ScrollReveal>
+        </div>
       </main>
+      {showTopButton && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 text-sm font-medium text-white shadow-lg hover:bg-white/15 hover:border-white/30 transition-all"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="w-4 h-4" />
+          <span>Top</span>
+        </button>
+      )}
     </div>
   );
 };
