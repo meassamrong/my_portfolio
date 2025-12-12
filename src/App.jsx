@@ -1,12 +1,5 @@
 import React, { useMemo, useState } from "react";
-import {
-  Database,
-  GitBranch,
-  Globe,
-  Layout,
-  Server,
-  Terminal,
-} from "lucide-react";
+import { Database, Layout, Server, Terminal } from "lucide-react";
 import AchievementsSection from "./components/AchievementsSection";
 import ExperienceSection from "./components/ExperienceSection";
 import FooterCTA from "./components/FooterCTA";
@@ -19,6 +12,7 @@ import ProjectsSection, {
 import SkillsSection from "./components/SkillsSection";
 import ScrollReveal from "./components/ScrollReveal";
 import TechIcons from "./components/TechIcons";
+import HobbySection from "./components/HobbySection";
 import MyPhoto from "./assets/meassamrong_photo.jpg";
 import MyDSECert from "./assets/samrong_is_DSE_Cert.jpg";
 import MyCyberCert from "./assets/Samrong_Cyber_Certificate.jpg";
@@ -33,6 +27,7 @@ const buildSkills = () => [
   { name: "Nuxt.js", icon: TechIcons.Nuxt, color: "text-green-400" },
   { name: "Python", icon: TechIcons.Python, color: "text-blue-400" },
   { name: "FastAPI", icon: Server, color: "text-teal-400" },
+  { name: "ExpressJS", icon: TechIcons.Express, color: "text-gray-50" },
   { name: "WordPress", icon: TechIcons.wordpress, color: "text-sky-700" },
   { name: "Tailwind", icon: TechIcons.Tailwind, color: "text-cyan-400" },
   { name: "Bootstrap", icon: Layout, color: "text-purple-500" },
@@ -110,39 +105,90 @@ const translations = {
         title: "Computer Store",
         description:
           "Developed a robust PC Store e-commerce platform capable of handling large user bases as part of a. Focus on scalable architecture and user-friendly interface.",
-        image: "https://placehold.co/600x400/1e293b/3b82f6?text=Computer-Store",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-head.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-head.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-feature-product.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-brand-search.png",
+        ],
         demoLink: "#",
         gitLink: "https://github.com/meassamrong/",
-        techIcons: projectTechIcons.nodeNuxtMongo,
+        techIcons: projectTechIcons.nodeNuxtExMongo,
       },
       {
-        title: "Customer Service Tracker",
+        title: "Mobile Repair Tracking System",
         description:
           "Managed and enhanced a customer service tracking system for mobile phone servicing at Dr. Phone Mobile Service Co., Ltd. Improved workflow efficiency and customer status visibility.",
         image:
-          "https://placehold.co/600x400/1e293b/22c55e?text=Service+Tracker",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/dr_phone_web_image_1.jpg",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/dr_phone_web_image_1.jpg",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/dr_phone_web_image.jpg",
+        ],
         demoLink: "#",
         gitLink: "https://github.com/meassamrong/",
-        techIcons: projectTechIcons.vueJs,
+        techIcons: projectTechIcons.phpMySql,
       },
       {
-        title: "Internal Inventory System",
+        title: "Kanhchrong Sor Course System",
         description:
-          "Updated and developed an internal inventory system for Dr. Phone Mobile Service Co., Ltd. Streamlined stock management and reporting processes.",
+          "Making a website for Kanhchrong Sor community. Get direct insights into the Forex and Crypto markets through real-world experience and analysis.",
         image:
-          "https://placehold.co/600x400/1e293b/ef4444?text=Inventory+System",
-        demoLink: "#",
-        gitLink: "https://github.com/meassamrong/",
-        techIcons: projectTechIcons.nodeDb,
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_account_manage.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_account_manage.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_head_public.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_course_main.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_lesson_and_admin_system.png",
+        ],
+        demoLink: "https://kanhchrongsor.com",
+        gitLink: "https://kanhchrongsor.com",
+        techIcons: projectTechIcons.vueNodeExpressMongo,
       },
       {
-        title: "IT Infrastructure Automation",
+        title: "JDemy Free Course",
         description:
-          "Designed and maintained automation systems using VMware and VCenter. Configured VM environments for various operating systems including Windows, Linux, and Mac.",
-        image: "https://placehold.co/600x400/1e293b/eab308?text=Automation",
-        demoLink: "#",
-        gitLink: "https://github.com/meassamrong/",
-        techIcons: projectTechIcons.serverPython,
+          "I built a website that allows everyone to access Udemy courses for free when 100% discount coupons are available. The system uses multiple bots, workers, and backend services working together. It scrapes Udemy coupons, validates them through the Udemy API using worker services, and stores coupon metadata and expiration data in Redis cache.",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_main_page.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_main_page.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_category_light_mode_page.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_cours_discover_page.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_cours_main_page.png",
+        ],
+        demoLink: "https://jdemy.store",
+        gitLink: "https://jdemy.store",
+        techIcons: projectTechIcons.vueNodeExpressMongo,
+      },
+      {
+        title: "Express API Boilerplate",
+        description:
+          "Modern, security-focused starter kit for building Express.js APIs with JWT auth, MongoDB persistence, Redis caching, and structured logging.",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/boilerplate_swagger_page_readme.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/boilerplate_swagger_page_readme.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/boilerplate_swagger_express_api_docs.png",
+        ],
+        demoLink: "https://github.com/meassamrong/express-api-boilerplate",
+        gitLink: "https://github.com/meassamrong/express-api-boilerplate",
+        techIcons: projectTechIcons.nodeExpressMongo,
+      },
+      {
+        title: "Twitter Clone API",
+        description:
+          "A collaborative project developed with a TFD instructor and fellow TFD students as part of the Full Stack Developer Bootcamp. The project is a Twitter-inspired CRUD system.",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/tw_clon_tdf_comllap_code_view.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/tw_clon_tdf_comllap_code_view.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/tw_clon_tdf_comllap_commit.png",
+        ],
+        demoLink: "https://github.com/tfd-ed/tw-clone-api",
+        gitLink: "https://github.com/tfd-ed/tw-clone-api",
+        techIcons: projectTechIcons.nodeExpressMongo,
       },
     ],
     achievements: [
@@ -310,11 +356,50 @@ const translations = {
           "https://media.licdn.com/dms/image/v2/D4E22AQGhoGBLRd25kA/feedshare-shrink_1280/B4EZpZ9f6aKoAs-/0/1762445885408?e=1767225600&v=beta&t=nlB6rAiePh6vG-cIVobuMNpqXjWoz-e0mJoNBWv-9VA",
       },
     ],
+    hobbies: [
+      {
+        name: "Coding",
+        emoji: "💻",
+        description: "Building side projects and experimenting with new frameworks.",
+        image: "https://placehold.co/600x400/0f172a/22c55e?text=Code+Playground",
+      },
+      {
+        name: "Tech Research",
+        emoji: "🔬",
+        description: "Reading about emerging technologies and testing new tools.",
+        image: "https://placehold.co/600x400/111827/3b82f6?text=Research+Notes",
+      },
+      {
+        name: "Gaming",
+        emoji: "🎮",
+        description: "Competitive matches and cooperative adventures with friends.",
+        image: "https://placehold.co/600x400/0b1120/f97316?text=Gaming+Session",
+      },
+      {
+        name: "Football",
+        emoji: "⚽",
+        description: "Weekend matches to stay active and enjoy team play.",
+        image: "https://placehold.co/600x400/0f172a/22c55e?text=Football+Field",
+      },
+      {
+        name: "Bicycle",
+        emoji: "🚴",
+        description: "City rides to explore new streets and clear my head.",
+        image: "https://placehold.co/600x400/111827/38bdf8?text=City+Ride",
+      },
+      {
+        name: "Camping & Riding Trips",
+        emoji: "🏕️",
+        description: "Outdoor trips, campfires, and long rides to unwind.",
+        image: "https://placehold.co/600x400/0b1120/a855f7?text=Camping+Trail",
+      },
+    ],
     labels: {
       heroContact: "Contact Me",
       experienceTitle: "Professional Journey",
       skillsTitle: "Tech Arsenal",
       projectsTitle: "Featured Projects",
+      hobbiesTitle: "Hobbies & Interests",
       achievementsTitle: "Achievements & Certifications",
     },
     projectCtas: { demo: "Live Demo", code: "GitHub" },
@@ -419,42 +504,93 @@ const translations = {
     ],
     projects: [
       {
-        title: "វេទិកា E-Commerce",
+        title: "ហាងលក់ កុំព្យូទ័រ",
         description:
-          "បានអភិវឌ្ឍវេទិកា E-Commerce ដ៏រឹងមាំមួយដែលមានសមត្ថភាពដោះស្រាយអ្នកប្រើប្រាស់ចំនួនច្រើន ដែលជាផ្នែកមួយនៃសារណាបញ្ចប់ការសិក្សា។ ផ្តោតលើស្ថាបត្យកម្មដែលអាចពង្រីកបាន និងចំណុចប្រទាក់ងាយស្រួលប្រើ។",
-        image: "https://placehold.co/600x400/1e293b/3b82f6?text=E-Commerce",
+          "បានអភិវឌ្ឍវេបសា ហាងលក់ កុំព្យូទ័រ (E-Commerce) ដ៏រឹងមាំមួយដែលមានសមត្ថភាពដោះស្រាយអ្នកប្រើប្រាស់ចំនួនច្រើន។ ផ្តោតលើស្ថាបត្យកម្មដែលអាចពង្រីកបាន និងចំណុចប្រទាក់ងាយស្រួលប្រើ។",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-head.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-head.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-feature-product.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/pc-store-brand-search.png",
+        ],
         demoLink: "#",
         gitLink: "https://github.com/meassamrong/",
-        techIcons: projectTechIcons.nodeReact,
+        techIcons: projectTechIcons.nodeNuxtExMongo,
       },
       {
         title: "ប្រព័ន្ធតាមដានសេវាកម្មអតិថិជន",
         description:
           "បានគ្រប់គ្រង និងកែលម្អប្រព័ន្ធតាមដានសេវាកម្មជួសជុលទូរស័ព្ទដៃនៅ Dr. Phone Mobile Service Co., Ltd. ជួយបង្កើនប្រសិទ្ធភាពលំហូរការងារ និងផ្តល់ភាពច្បាស់លាស់នៃស្ថានភាពជួសជុលជូនអតិថិជន។",
         image:
-          "https://placehold.co/600x400/1e293b/22c55e?text=Service+Tracker",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/dr_phone_web_image_1.jpg",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/dr_phone_web_image_1.jpg",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/dr_phone_web_image.jpg",
+        ],
         demoLink: "#",
         gitLink: "https://github.com/meassamrong/",
         techIcons: projectTechIcons.vueJs,
       },
       {
-        title: "ប្រព័ន្ធគ្រប់គ្រងស្តុកផ្ទៃក្នុង",
+        title: "Kanhchrong Sor Course System",
         description:
-          "បានធ្វើបច្ចុប្បន្នភាព និងអភិវឌ្ឍប្រព័ន្ធគ្រប់គ្រងស្តុកសម្រាប់ Dr. Phone Mobile Service Co., Ltd. ដើម្បីសម្រួលដល់ការគ្រប់គ្រងស្តុក និងដំណើរការរាយការណ៍។",
+          "បង្កើតគេហទំព័រសម្រាប់សហគមន៍កញ្ជ្រោងស។ ទទួលបានព័ត៌មានដោយផ្ទាល់អំពីទីផ្សារ Forex និង Crypto តាមរយៈបទពិសោធន៍ និងការវិភាគក្នុងពិភពពិត។",
         image:
-          "https://placehold.co/600x400/1e293b/ef4444?text=Inventory+System",
-        demoLink: "#",
-        gitLink: "https://github.com/meassamrong/",
-        techIcons: projectTechIcons.nodeDb,
-      },
-      {
-        title: "ស្វ័យប្រវត្តិកម្មហេដ្ឋារចនាសម្ព័ន្ធ IT",
-        description:
-          "បានរចនា និងថែទាំប្រព័ន្ធស្វ័យប្រវត្តិកម្មដោយប្រើ VMware និង VCenter។ កំណត់រចនាសម្ព័ន្ធបរិស្ថាន VM សម្រាប់ប្រព័ន្ធប្រតិបត្តិការជាច្រើនរួមមាន Windows, Linux និង Mac។",
-        image: "https://placehold.co/600x400/1e293b/eab308?text=Automation",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_account_manage.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_account_manage.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_head_public.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_course_main.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/kcs_lesson_and_admin_system.png",
+        ],
         demoLink: "#",
         gitLink: "https://github.com/meassamrong/",
         techIcons: projectTechIcons.serverPython,
+      },
+      {
+        title: "JDemy Free Course",
+        description:
+          "ខ្ញុំបានបង្កើតគេហទំព័រមួយដែលអនុញ្ញាតឱ្យអ្នករាល់គ្នាចូលមើលវគ្គសិក្សា Udemy ដោយឥតគិតថ្លៃនៅពេលដែលមានប័ណ្ណបញ្ចុះតម្លៃ 100%។ ប្រព័ន្ធនេះប្រើប្រាស់បូត កម្មករ និងសេវាកម្ម backend ច្រើនដែលធ្វើការជាមួយគ្នា។ វាកោសប័ណ្ណ Udemy ផ្ទៀងផ្ទាត់ពួកវាតាមរយៈ Udemy API ដោយប្រើសេវាកម្មកម្មករ និងរក្សាទុកទិន្នន័យមេតាប័ណ្ណ និងទិន្នន័យផុតកំណត់នៅក្នុងឃ្លាំងសម្ងាត់ Redis។",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_main_page.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_main_page.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_category_light_mode_page.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_cours_discover_page.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/jdemy_cours_main_page.png",
+        ],
+        demoLink: "https://jdemy.store",
+        gitLink: "https://jdemy.store",
+        techIcons: projectTechIcons.vueNodeExpressMongo,
+      },
+      {
+        title: "Express API Boilerplate",
+        description:
+          "APIទំនើប និងផ្តោតលើសុវត្ថិភាពសម្រាប់ការកសាង Express.js APIs ជាមួយ JWT auth, MongoDB persistence, Redis caching និងការកត់ត្រាដែលមានរចនាសម្ព័ន្ធ។",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/boilerplate_swagger_page_readme.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/boilerplate_swagger_page_readme.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/boilerplate_swagger_express_api_docs.png",
+        ],
+        demoLink: "https://github.com/meassamrong/express-api-boilerplate",
+        gitLink: "https://github.com/meassamrong/express-api-boilerplate",
+        techIcons: projectTechIcons.nodeExpressMongo,
+      },
+      {
+        title: "Twitter Clone API",
+        description:
+          "ជាProejct ដែកធ្វើឡើងជាមួយលោកគ្រូ TFD និង សិស្សរួមជំនាន់ TDF Bootcam Full Stack Developer, ដែលជា CRUD System យកលំនាមតាមរយះ Twitter",
+        image:
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/tw_clon_tdf_comllap_code_view.png",
+        images: [
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/tw_clon_tdf_comllap_code_view.png",
+          "https://raw.githubusercontent.com/meassamrong/meassamrong/refs/heads/Develop/assets/tw_clon_tdf_comllap_commit.png",
+        ],
+        demoLink: "https://github.com/tfd-ed/tw-clone-api",
+        gitLink: "https://github.com/tfd-ed/tw-clone-api",
+        techIcons: projectTechIcons.nodeExpressMongo,
       },
     ],
     achievements: [
@@ -622,11 +758,50 @@ const translations = {
           "https://media.licdn.com/dms/image/v2/D4E22AQGhoGBLRd25kA/feedshare-shrink_1280/B4EZpZ9f6aKoAs-/0/1762445885408?e=1767225600&v=beta&t=nlB6rAiePh6vG-cIVobuMNpqXjWoz-e0mJoNBWv-9VA",
       },
     ],
+    hobbies: [
+      {
+        name: "Coding",
+        emoji: "💻",
+        description: "សរសេរកូដ និងសាកល្បងបណ្ណាល័យថ្មីៗ។",
+        image: "https://placehold.co/600x400/0f172a/22c55e?text=Code+Playground",
+      },
+      {
+        name: "Tech Research",
+        emoji: "🔬",
+        description: "ស្វែងយល់អំពីបច្ចេកវិទ្យាថ្មី និងការប្រើប្រាស់ឧបករណ៍ថ្មីៗ។",
+        image: "https://placehold.co/600x400/111827/3b82f6?text=Research+Notes",
+      },
+      {
+        name: "Gaming",
+        emoji: "🎮",
+        description: "លេងហ្គេមជាមួយមិត្តភក្តិ ដើម្បីសម្រាក និងកម្សាន្ត។",
+        image: "https://placehold.co/600x400/0b1120/f97316?text=Gaming+Session",
+      },
+      {
+        name: "កីឡាបាល់ទាត់",
+        emoji: "⚽",
+        description: "លេងបាល់ទាត់ថ្ងៃចុងសប្ដាហ៍ ដើម្បីរក្សាសុខភាព និងសន្និបាតជាក្រុម។",
+        image: "https://placehold.co/600x400/0f172a/22c55e?text=Football+Field",
+      },
+      {
+        name: "ជិះកង់",
+        emoji: "🚴",
+        description: "ជិះកង់ក្នុងទីក្រុង ដើម្បីសិក្សាផ្លូវថ្មីៗ និងសម្រាកខ្លួន។",
+        image: "https://placehold.co/600x400/111827/38bdf8?text=City+Ride",
+      },
+      {
+        name: "Camping & Riding Trips",
+        emoji: "🏕️",
+        description: "ដំណើរកម្សាន្តក្រៅក្រុង បោះជំរុំ និងជិះកង់បន្តិចឆ្ងាយ។",
+        image: "https://placehold.co/600x400/0b1120/a855f7?text=Camping+Trail",
+      },
+    ],
     labels: {
       heroContact: "ទាក់ទងខ្ញុំ",
       experienceTitle: "ដំណើរការងារ",
       skillsTitle: "ជំនាញ & បច្ចេកវិទ្យា",
       projectsTitle: "គម្រោងដែរបានបង្កើត",
+      hobbiesTitle: "ចំណង់ចំណូលចិត្ត",
       achievementsTitle: "សមិទ្ធផល និងវិញ្ញាបនបត្រ",
     },
     projectCtas: { demo: "សាកល្បងផ្ទាល់", code: "កូដ GitHub" },
@@ -728,6 +903,9 @@ const App = () => {
         </ScrollReveal>
         <ScrollReveal>
           <GithubSection stats={githubStats} copy={active.github} />
+        </ScrollReveal>
+        <ScrollReveal>
+          <HobbySection hobbies={active.hobbies} title={active.labels.hobbiesTitle} />
         </ScrollReveal>
         <ScrollReveal>
           <FooterCTA
