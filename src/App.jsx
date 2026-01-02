@@ -174,9 +174,7 @@ const translations = {
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/15f23a10a8dd47f82aea82c895ec66a28d9e9f0990bd7d41ed736bbc65944f32?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQE5suMKtCQFVg/feedshare-shrink_1280/B56ZqCanVIJQAs-/0/1763124606567?e=1767225600&v=beta&t=oednbj1xCrMxhz6qnx78-pROsnVPasAxOfDlsa7zJdw",
-      },
+        image: ()=> import('./assets/certificate/devops-foundations-microservices.jfif')},
       {
         title: "Using Python for Automation",
         subtitle: "LinkedIn Learning Certificate",
