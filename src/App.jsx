@@ -13,10 +13,20 @@ import ProjectsSection, {
 import SkillsSection from "./components/SkillsSection";
 import TechIcons from "./components/TechIcons";
 import HobbySection from "./components/HobbySection";
+
+// certificate imports
 import MyPhoto from "./assets/meassamrong_photo.jpg";
-import MyDSECert from "./assets/samrong_is_DSE_Cert.jpg";
-import MyCyberCert from "./assets/Samrong_Cyber_Certificate.jpg";
-import MyFinanceCert from "./assets/Samrong_Meas_page-0001_Cert.jpg";
+
+// Dynamic import for all certificates in the folder
+const certImages = import.meta.glob(
+  "./assets/certificate/*.{png,jpg,jpeg,jfif,webp}",
+  { eager: true, import: "default" }
+);
+
+const getCertImage = (filename) => {
+  const path = `./assets/certificate/${filename}`;
+  return certImages[path] || null;
+};
 
 const buildSkills = () => [
   { name: "Node.js", icon: TechIcons.Node, color: "text-green-500" },
@@ -206,13 +216,13 @@ const translations = {
         title: "ASEAN Data Science Explorers Trainer",
         subtitle: "SAP (2024)",
         tone: "data",
-        image: MyDSECert,
+        image: getCertImage("asean-data-science.jpg"),
       },
       {
         title: "Cyber Security Essentials",
         subtitle: "Sunrise Institute (2022)",
         tone: "security",
-        image: MyCyberCert,
+        image: getCertImage("cyber-security-essentials.jpg"),
       },
       {
         title: "DevOps Foundations: Microservices",
@@ -220,15 +230,15 @@ const translations = {
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/15f23a10a8dd47f82aea82c895ec66a28d9e9f0990bd7d41ed736bbc65944f32?u=343535298",
-        image: ()=> import('./assets/certificate/devops-foundations-microservices.jfif')},
+        image: getCertImage("devops-foundations-microservices.jfif"),
+      },
       {
         title: "Using Python for Automation",
         subtitle: "LinkedIn Learning Certificate",
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/eb86cccf93a9f98d4e93bbe424a9007b6c30cca1515f6ceb7dbabdf3d6ba4a76?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEVqMIqosp3qg/feedshare-shrink_1280/B56ZqxHZ9zJYAs-/0/1763908100193?e=1767225600&v=beta&t=qnEXfEDCAjKfygwDcGpbd0m6t8TPvY3TIre8OVyhQJM",
+        image: getCertImage("python-for-automation.jfif"),
       },
       {
         title: "Learning Docker",
@@ -236,14 +246,13 @@ const translations = {
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/4936c6028cf9b9c59e5e00d085b4e1d481cfd3f7cf835a39d3a3024497313682?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEfk5oJRBXHnQ/feedshare-shrink_1280/B56ZojrZssJwAs-/0/1761535171832?e=1767225600&v=beta&t=Qq3-KladSruVDRh0td-Y66fN0MlTRkTaiWEEe1pnLwY",
+        image: getCertImage("learning-docker.jfif"),
       },
       {
         title: "Personal Financial Management",
         subtitle: "Profiles Asia Pacific Inc.",
         tone: "financial",
-        image: MyFinanceCert,
+        image: getCertImage("personal-financial-management.jpg"),
       },
       {
         title: "Strategic Thinking",
@@ -251,8 +260,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/f999bd49ce3ba44a4fb83e3473c7b778a858cf326409b77db75be76072b32c66?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEt3Ynbpohc5g/feedshare-shrink_1280/B56ZoOpLKBKIAs-/0/1761182266294?e=1767225600&v=beta&t=7fJj-CF4hr2roDFA9oW2xU7IaI_l7YODPjLqGjkN9Js",
+        image: getCertImage("strategic-thinking.jfif"),
       },
       {
         title: "Applied Curiosity",
@@ -260,8 +268,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/d10754322927e6566dd1efaaf47b66896377f081da683d352f68b6a6d05890dc?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQFQKAKLxL9x8w/feedshare-shrink_1280/B56ZpVR_RzG0As-/0/1762367370649?e=1767225600&v=beta&t=XZR3WxJlC4S25mEvtAHd00g2uVxwcXOLWGtJToyr1Vw",
+        image: getCertImage("applied-curiosity.jfif"),
       },
       {
         title: "Counterintuitive Leadership Strategies for a VUCA",
@@ -269,8 +276,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ed8e3e1c4c931c0ed62aab362e0c9ebcf2743367a83258d5c20f8a1b811e3ef5?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEXYIUDazklAQ/feedshare-shrink_1280/B56ZqxHfRmI0As-/0/1763908121958?e=1767225600&v=beta&t=NS3DJ1h-Lrqvp594HOgBTaDnFazpwpfrD1zRmAzKEF8",
+        image: getCertImage("cls-vuca.jfif"),
       },
       {
         title: "Developing a Learning Mindset",
@@ -278,8 +284,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ac13ede550b13131ca0dc5093438ef81c07632bb434c9116a32d57b2aca4bb11?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQERfj3sWshlOQ/feedshare-shrink_1280/B56ZpVOBQhHYA0-/0/1762366330183?e=1767225600&v=beta&t=NtNo4pzCR63_nt7_CUxKBZPe2b3kjmTJWFpveV6pa7Y",
+        image: getCertImage("developing-a-learning-mindset.jfif"),
       },
       {
         title: "Getting Things Done",
@@ -287,8 +292,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ae15e9dec2bc99bfb64414328a0dda577a51e7ec29db80f0d5ef84b7f72b55a9?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQE9CHuOK-KjtQ/feedshare-shrink_1280/B56ZpV5PNUIcAs-/0/1762377659468?e=1767225600&v=beta&t=ZUAV6tJDB_mvVortV1A0wr80Ek-ne1wW1j1ksq79zG0",
+        image: getCertImage("getting-things-done.jfif"),
       },
       {
         title: "Navigating Ambiguity",
@@ -296,8 +300,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/e57c9f29b1a1aa0da688c648cab30c9ee5eba9dad0e55b4aaf603284367b3632?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4E22AQGQJeKAyIU17Q/feedshare-shrink_1280/B4EZpZxwxHKYAs-/0/1762442808668?e=1767225600&v=beta&t=S3HCcEPltqVxLvM7Wgm34gwLqdnvfrQMPyoinzet5wg",
+        image: getCertImage("navigating-ambiguity.jfif"),
       },
       {
         title: "Setting a Vision: How to Gain Clarity on Your Goals",
@@ -305,8 +308,9 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/17e99166099f8fb9f740deff9960a3a2375d0b7ab6f0134fd616d04a328d68d9?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQE78SsRt7226g/feedshare-shrink_1280/B56ZpAps4cHAAs-/0/1762021265165?e=1767225600&v=beta&t=ua253B6lc8LIobmxLkCNGk4X-5MpNlWN1T6XK1xcv4s",
+        image: getCertImage(
+          "setting-a-vision-how-to-gain-clarity-on-your-goals.jfif"
+        ),
       },
       {
         title: "The Six Skills of Proactive Professionals",
@@ -314,8 +318,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/321ea5fb83104390f9415188faadb7e18e67776998c82f7d6870ccffb535bfec?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQH4j9F_K9njrg/feedshare-shrink_1280/B56ZpVvGGlJkAw-/0/1762375000760?e=1767225600&v=beta&t=kDH6lHT_GOfZxWPPiwIK7yuBT-NjJKdoBVfPorwNhHQ",
+        image: getCertImage("the-six-skills-of-proactive-professionals.jfif"),
       },
       {
         title: "Delivering Results Effectively",
@@ -323,8 +326,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/a048f090f82ab871dda6d7e042f059d2d8160267985614336ce0fd405e3640bc?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQELEbvLQ8Tk8g/feedshare-shrink_1280/B56Zo1NVKeJQAw-/0/1761829278618?e=1767225600&v=beta&t=T7Rr7Cg0jzTIoM60ithzfaP04I0t5lOEnnC-C3hCTQM",
+        image: getCertImage("delivering-results-effectively.jfif"),
       },
       {
         title: "Developing Business Acumen (2016)",
@@ -332,8 +334,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ec08bab3a981f037e968e14ccdd7ed54fd59bcda7dbc675611c74c458da1f375?u=343535298&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BlRvtVhn2TXyyJ6%2FR%2Br5obw%3D%3D",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEiYRUg7jI1jA/feedshare-shrink_1280/B56ZoeFGSBIcAw-/0/1761441244539?e=1767225600&v=beta&t=SGtweE39PjzZk8-TvQcEYMFZYun0NMKdsbl8VTlVeIA",
+        image: getCertImage("developing-business-acument-2016.jfif"),
       },
       {
         title: "Executive Decision-Making",
@@ -341,8 +342,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/48344bc92185a1acfa7d31a8ddf625fc4a83d415974457e0e2bf6c15ea7e5704?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEVhiaunz6RVg/feedshare-shrink_1280/B56ZoTnGZNKIAs-/0/1761265609655?e=1767225600&v=beta&t=kYCQPTaaE--HxXzq1anLaYw_K860cfte5je7uKrbniA",
+        image: getCertImage("executive-decision-making.jfif"),
       },
       {
         title: "Improving Your Judgment for Better Decision-Making",
@@ -350,8 +350,9 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/a3cca6ed3d5bef65e89f566978c1ad8653626bdbccf21bd8cfd721265ef25b3f?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4E22AQGhoGBLRd25kA/feedshare-shrink_1280/B4EZpZ9f6aKoAs-/0/1762445885408?e=1767225600&v=beta&t=nlB6rAiePh6vG-cIVobuMNpqXjWoz-e0mJoNBWv-9VA",
+        image: getCertImage(
+          "improving-your-judgment-for-better-decision-making.jfif"
+        ),
       },
     ],
     hobbies: [
@@ -610,13 +611,13 @@ const translations = {
         title: "គ្រូបង្រៀន ASEAN Data Science Explorers",
         subtitle: "SAP (2024)",
         tone: "data",
-        image: MyDSECert,
+        image: getCertImage("asean-data-science.jpg"),
       },
       {
         title: "មូលដ្ឋានគ្រឹះសន្តិសុខសាយប័រ (Cyber Security)",
         subtitle: "Sunrise Institute (2022)",
         tone: "security",
-        image: MyCyberCert,
+        image: getCertImage("cyber-security-essentials.jpg"),
       },
       {
         title: "មូលដ្ឋានគ្រឹះ DevOps: Microservices",
@@ -624,8 +625,7 @@ const translations = {
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/15f23a10a8dd47f82aea82c895ec66a28d9e9f0990bd7d41ed736bbc65944f32?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQE5suMKtCQFVg/feedshare-shrink_1280/B56ZqCanVIJQAs-/0/1763124606567?e=1767225600&v=beta&t=oednbj1xCrMxhz6qnx78-pROsnVPasAxOfDlsa7zJdw",
+        image: getCertImage("devops-foundations-microservices.jfif"),
       },
       {
         title: "ការប្រើប្រាស់ Python សម្រាប់ស្វ័យប្រវត្តិកម្ម",
@@ -633,8 +633,7 @@ const translations = {
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/eb86cccf93a9f98d4e93bbe424a9007b6c30cca1515f6ceb7dbabdf3d6ba4a76?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEVqMIqosp3qg/feedshare-shrink_1280/B56ZqxHZ9zJYAs-/0/1763908100193?e=1767225600&v=beta&t=qnEXfEDCAjKfygwDcGpbd0m6t8TPvY3TIre8OVyhQJM",
+        image: getCertImage("python-for-automation.jfif"),
       },
       {
         title: "ការសិក្សាអំពី Docker",
@@ -642,14 +641,13 @@ const translations = {
         tone: "developer",
         certificate:
           "https://www.linkedin.com/learning/certificates/4936c6028cf9b9c59e5e00d085b4e1d481cfd3f7cf835a39d3a3024497313682?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEfk5oJRBXHnQ/feedshare-shrink_1280/B56ZojrZssJwAs-/0/1761535171832?e=1767225600&v=beta&t=Qq3-KladSruVDRh0td-Y66fN0MlTRkTaiWEEe1pnLwY",
+        image: getCertImage("learning-docker.jfif"),
       },
       {
         title: "ការគ្រប់គ្រងហិរញ្ញវត្ថុផ្ទាល់ខ្លួន",
         subtitle: "Profiles Asia Pacific Inc.",
         tone: "financial",
-        image: MyFinanceCert,
+        image: getCertImage("personal-financial-management.jpg"),
       },
       {
         title: "ការគិតបែបយុទ្ធសាស្ត្រ (Strategic Thinking)",
@@ -657,8 +655,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/f999bd49ce3ba44a4fb83e3473c7b778a858cf326409b77db75be76072b32c66?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEt3Ynbpohc5g/feedshare-shrink_1280/B56ZoOpLKBKIAs-/0/1761182266294?e=1767225600&v=beta&t=7fJj-CF4hr2roDFA9oW2xU7IaI_l7YODPjLqGjkN9Js",
+        image: getCertImage("strategic-thinking.jfif"),
       },
       {
         title: "ការប្រើប្រាស់គំនិតចង់ស្រាវជ្រាវ (Applied Curiosity)",
@@ -666,8 +663,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/d10754322927e6566dd1efaaf47b66896377f081da683d352f68b6a6d05890dc?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQFQKAKLxL9x8w/feedshare-shrink_1280/B56ZpVR_RzG0As-/0/1762367370649?e=1767225600&v=beta&t=XZR3WxJlC4S25mEvtAHd00g2uVxwcXOLWGtJToyr1Vw",
+        image: getCertImage("applied-curiosity.jfif"),
       },
       {
         title: "យុទ្ធសាស្ត្រដឹកនាំសម្រាប់ពិភព VUCA",
@@ -675,8 +671,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ed8e3e1c4c931c0ed62aab362e0c9ebcf2743367a83258d5c20f8a1b811e3ef5?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEXYIUDazklAQ/feedshare-shrink_1280/B56ZqxHfRmI0As-/0/1763908121958?e=1767225600&v=beta&t=NS3DJ1h-Lrqvp594HOgBTaDnFazpwpfrD1zRmAzKEF8",
+        image: getCertImage("cls-vuca.jfif"),
       },
       {
         title: "ការអភិវឌ្ឍផ្នត់គំនិតនៃការរៀនសូត្រ",
@@ -684,8 +679,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ac13ede550b13131ca0dc5093438ef81c07632bb434c9116a32d57b2aca4bb11?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQERfj3sWshlOQ/feedshare-shrink_1280/B56ZpVOBQhHYA0-/0/1762366330183?e=1767225600&v=beta&t=NtNo4pzCR63_nt7_CUxKBZPe2b3kjmTJWFpveV6pa7Y",
+        image: getCertImage("developing-a-learning-mindset.jfif"),
       },
       {
         title: "ការបំពេញការងារឱ្យបានសម្រេច (GTD)",
@@ -693,8 +687,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ae15e9dec2bc99bfb64414328a0dda577a51e7ec29db80f0d5ef84b7f72b55a9?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQE9CHuOK-KjtQ/feedshare-shrink_1280/B56ZpV5PNUIcAs-/0/1762377659468?e=1767225600&v=beta&t=ZUAV6tJDB_mvVortV1A0wr80Ek-ne1wW1j1ksq79zG0",
+        image: getCertImage("getting-things-done.jfif"),
       },
       {
         title: "ការរុករកភាពមិនច្បាស់លាស់ (Navigating Ambiguity)",
@@ -702,8 +695,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/e57c9f29b1a1aa0da688c648cab30c9ee5eba9dad0e55b4aaf603284367b3632?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4E22AQGQJeKAyIU17Q/feedshare-shrink_1280/B4EZpZxwxHKYAs-/0/1762442808668?e=1767225600&v=beta&t=S3HCcEPltqVxLvM7Wgm34gwLqdnvfrQMPyoinzet5wg",
+        image: getCertImage("navigating-ambiguity.jfif"),
       },
       {
         title: "ការកំណត់ចក្ខុវិស័យ៖ ភាពច្បាស់លាស់នៃគោលដៅ",
@@ -711,8 +703,9 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/17e99166099f8fb9f740deff9960a3a2375d0b7ab6f0134fd616d04a328d68d9?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQE78SsRt7226g/feedshare-shrink_1280/B56ZpAps4cHAAs-/0/1762021265165?e=1767225600&v=beta&t=ua253B6lc8LIobmxLkCNGk4X-5MpNlWN1T6XK1xcv4s",
+        image: getCertImage(
+          "setting-a-vision-how-to-gain-clarity-on-your-goals.jfif"
+        ),
       },
       {
         title: "ជំនាញទាំង ៦ នៃអ្នកជំនាញសកម្ម",
@@ -720,8 +713,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/321ea5fb83104390f9415188faadb7e18e67776998c82f7d6870ccffb535bfec?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQH4j9F_K9njrg/feedshare-shrink_1280/B56ZpVvGGlJkAw-/0/1762375000760?e=1767225600&v=beta&t=kDH6lHT_GOfZxWPPiwIK7yuBT-NjJKdoBVfPorwNhHQ",
+        image: getCertImage("the-six-skills-of-proactive-professionals.jfif"),
       },
       {
         title: "ការផ្តល់លទ្ធផលប្រកបដោយប្រសិទ្ធភាព",
@@ -729,8 +721,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/a048f090f82ab871dda6d7e042f059d2d8160267985614336ce0fd405e3640bc?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQELEbvLQ8Tk8g/feedshare-shrink_1280/B56Zo1NVKeJQAw-/0/1761829278618?e=1767225600&v=beta&t=T7Rr7Cg0jzTIoM60ithzfaP04I0t5lOEnnC-C3hCTQM",
+        image: getCertImage("delivering-results-effectively.jfif"),
       },
       {
         title: "ការអភិវឌ្ឍការយល់ដឹងអំពីអាជីវកម្ម (2016)",
@@ -738,8 +729,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/ec08bab3a981f037e968e14ccdd7ed54fd59bcda7dbc675611c74c458da1f375?u=343535298&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BlRvtVhn2TXyyJ6%2FR%2Br5obw%3D%3D",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEiYRUg7jI1jA/feedshare-shrink_1280/B56ZoeFGSBIcAw-/0/1761441244539?e=1767225600&v=beta&t=SGtweE39PjzZk8-TvQcEYMFZYun0NMKdsbl8VTlVeIA",
+        image: getCertImage("developing-business-acument-2016.jfif"),
       },
       {
         title: "ការសម្រេចចិត្តថ្នាក់ដឹកនាំ",
@@ -747,8 +737,7 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/48344bc92185a1acfa7d31a8ddf625fc4a83d415974457e0e2bf6c15ea7e5704?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5622AQEVhiaunz6RVg/feedshare-shrink_1280/B56ZoTnGZNKIAs-/0/1761265609655?e=1767225600&v=beta&t=kYCQPTaaE--HxXzq1anLaYw_K860cfte5je7uKrbniA",
+        image: getCertImage("executive-decision-making.jfif"),
       },
       {
         title: "ការកែលម្អការវិនិច្ឆ័យដើម្បីការសម្រេចចិត្តប្រសើរជាងមុន",
@@ -756,8 +745,9 @@ const translations = {
         tone: "linkedin",
         certificate:
           "https://www.linkedin.com/learning/certificates/a3cca6ed3d5bef65e89f566978c1ad8653626bdbccf21bd8cfd721265ef25b3f?u=343535298",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4E22AQGhoGBLRd25kA/feedshare-shrink_1280/B4EZpZ9f6aKoAs-/0/1762445885408?e=1767225600&v=beta&t=nlB6rAiePh6vG-cIVobuMNpqXjWoz-e0mJoNBWv-9VA",
+        image: getCertImage(
+          "improving-your-judgment-for-better-decision-making.jfif"
+        ),
       },
     ],
     hobbies: [
