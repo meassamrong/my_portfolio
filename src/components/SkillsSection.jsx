@@ -1,5 +1,4 @@
 import { Code2 } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
 import SkillCard from "./SkillCard";
 
 const SkillsSection = ({ skills, title = "Tech Arsenal" }) => (
@@ -16,9 +15,14 @@ const SkillsSection = ({ skills, title = "Tech Arsenal" }) => (
 
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
       {skills.map((skill, idx) => (
-        <ScrollReveal key={skill.name} delay={idx * 40} className="h-full">
+        <div
+          key={skill.name}
+          data-aos="fade-up"
+          data-aos-delay={idx * 40}
+          className="h-full"
+        >
           <SkillCard {...skill} />
-        </ScrollReveal>
+        </div>
       ))}
     </div>
   </section>

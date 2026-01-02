@@ -1,9 +1,12 @@
 import { Box, Database, Github, Server } from "lucide-react";
 import TechIcons from "./TechIcons";
 import ProjectCard from "./ProjectCard";
-import ScrollReveal from "./ScrollReveal";
 
-const ProjectsSection = ({ projects, title = "Featured Projects", ctaLabels }) => (
+const ProjectsSection = ({
+  projects,
+  title = "Featured Projects",
+  ctaLabels,
+}) => (
   <section>
     <div className="mb-12">
       <div className="flex items-center gap-4 mb-6">
@@ -17,9 +20,14 @@ const ProjectsSection = ({ projects, title = "Featured Projects", ctaLabels }) =
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map((project, idx) => (
-        <ScrollReveal key={project.title} delay={idx * 100} className="h-full">
+        <div
+          key={project.title}
+          data-aos="fade-up"
+          data-aos-delay={idx * 100}
+          className="h-full"
+        >
           <ProjectCard {...project} ctaLabels={ctaLabels} />
-        </ScrollReveal>
+        </div>
       ))}
     </div>
   </section>
@@ -38,11 +46,35 @@ export const projectTechIcons = {
       <TechIcons.Vue className="w-5 h-5 text-green-400" />
     </>
   ),
-  nodeNuxtMongo: (
+  phpMySql: (
     <>
-      <TechIcons.Nuxt className="w-5 h-5 text-green-400" />
+      <TechIcons.wordpress className="w-5 h-5 text-sky-50"/>
+      <TechIcons.Php className="w-5 h-5 text-sky-600" />
+      <TechIcons.MySql className="w-5 h-5 text-sky-500" />
+    </>
+  ),
+  vueNodeExpressMongo: (
+    <>
+      <TechIcons.Vue className="w-5 h-5 text-green-400" />
+      <TechIcons.Express className="w-5 h-5 text-gray-50" />
       <TechIcons.Node className="w-5 h-5 text-green-500" />
       <TechIcons.Mongodb className="w-5 h-5 text-green-400" />
+    </>
+  ),
+  nodeNuxtExMongo: (
+    <>
+      <TechIcons.Nuxt className="w-5 h-5 text-green-400" />
+      <TechIcons.Express className="w-5 h-5 text-gray-50" />
+      <TechIcons.Node className="w-5 h-5 text-green-500" />
+      <TechIcons.Mongodb className="w-5 h-5 text-green-400" />
+    </>
+  ),
+  nodeExpressMongo: (
+    <>
+      <TechIcons.Express className="w-5 h-5 text-gray-50" />
+      <TechIcons.Node className="w-5 h-5 text-green-500" />
+      <TechIcons.Mongodb className="w-5 h-5 text-green-400" />
+      <TechIcons.Redis className="w-5 h-5 text-red-500" />
     </>
   ),
   vueJs: (

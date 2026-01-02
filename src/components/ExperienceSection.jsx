@@ -1,6 +1,5 @@
 import { Layout } from "lucide-react";
 import ExperienceItem from "./ExperienceItem";
-import ScrollReveal from "./ScrollReveal";
 
 const ExperienceSection = ({ experiences, title = "Professional Journey" }) => (
   <section>
@@ -16,9 +15,13 @@ const ExperienceSection = ({ experiences, title = "Professional Journey" }) => (
 
     <div className="space-y-4">
       {experiences.map((item, idx) => (
-        <ScrollReveal key={item.company + item.role} delay={idx * 80}>
+        <div
+          key={item.company + item.role}
+          data-aos="fade-up"
+          data-aos-delay={idx * 80}
+        >
           <ExperienceItem {...item} />
-        </ScrollReveal>
+        </div>
       ))}
     </div>
   </section>

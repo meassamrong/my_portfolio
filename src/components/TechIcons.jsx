@@ -35,7 +35,9 @@ const sources = {
   MySql: "https://cdn.simpleicons.org/mysql",
   Github: "https://cdn.simpleicons.org/github",
   Git: "https://cdn.simpleicons.org/git",
-  wordpress: "https://cdn.simpleicons.org/wordpress"
+  wordpress: "https://cdn.simpleicons.org/wordpress",
+  Express: "https://cdn.simpleicons.org/express",
+  Php: "https://cdn.simpleicons.org/php"
 };
 
 const TechIcons = Object.fromEntries(

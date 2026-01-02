@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Code2, Database, ExternalLink, Shield, Video, Linkedin, DollarSign, X } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
 
 const achievementsIcons = {
   developer: <Code2 className="w-6 h-6 text-blue-400" />,
@@ -13,14 +12,31 @@ const achievementsIcons = {
 };
 
 const AchievementsSection = ({
-  achievements,
+  achievements = [],
   title = "Achievements & Certifications",
   certificateLabel = "Certificate",
 }) => {
   const [lightbox, setLightbox] = useState({ open: false, src: "", alt: "" });
+  const [isMobile, setIsMobile] = useState(false);
 
   const openLightbox = (src, alt) => setLightbox({ open: true, src, alt });
   const closeLightbox = () => setLightbox({ open: false, src: "", alt: "" });
+
+  // Disable per-card reveal animations on mobile to avoid elements staying hidden
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const updateMatch = () => setIsMobile(mediaQuery.matches);
+    updateMatch();
+    const subscribe = mediaQuery.addEventListener
+      ? () => mediaQuery.addEventListener("change", updateMatch)
+      : () => mediaQuery.addListener(updateMatch);
+    const unsubscribe = mediaQuery.removeEventListener
+      ? () => mediaQuery.removeEventListener("change", updateMatch)
+      : () => mediaQuery.removeListener(updateMatch);
+    subscribe();
+    return unsubscribe;
+  }, []);
 
   // Prevent background scrolling
   useEffect(() => {
@@ -56,11 +72,11 @@ const AchievementsSection = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {achievements.map(({ title, subtitle, tone, certificate, image }, idx) => (
-          <ScrollReveal key={title} delay={idx * 80} className="h-full">
+        {achievements.map(({ title, subtitle, tone, certificate, image }, idx) => {
+          const Card = (
             <div className="p-4 rounded-xl border border-gray-800 bg-gray-900/30 flex items-start gap-4 h-full">
               <div className="p-2 bg-blue-500/20 rounded-lg">
-                {achievementsIcons[tone]}
+                {achievementsIcons[tone] || achievementsIcons.developer}
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-white">{title}</h3>
@@ -75,6 +91,7 @@ const AchievementsSection = ({
                       <img
                         src={image}
                         alt={`${title} certificate`}
+                        loading="lazy"
                         className="w-full max-h-64 object-cover rounded-lg border border-gray-800 transition-transform duration-300 group-hover:scale-[1.02] group-hover:border-blue-500/40 cursor-zoom-in"
                       />
                     </button>
@@ -93,8 +110,27 @@ const AchievementsSection = ({
                 )}
               </div>
             </div>
-          </ScrollReveal>
-        ))}
+          );
+
+          if (isMobile) {
+            return (
+              <div key={title} className="h-full">
+                {Card}
+              </div>
+            );
+          }
+
+          return (
+            <div
+              key={title}
+              data-aos="fade-up"
+              data-aos-delay={idx * 80}
+              className="h-full"
+            >
+              {Card}
+            </div>
+          );
+        })}
       </div>
       {lightbox.open && typeof document !== 'undefined' && createPortal(
         <div
