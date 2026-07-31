@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import AOS from "aos";
 import { ArrowUp, Database, Layout, Server, Terminal } from "lucide-react";
+import AbstractBackground from "./components/AbstractBackground";
 import AchievementsSection from "./components/AchievementsSection";
 import ExperienceSection from "./components/ExperienceSection";
 import FooterCTA from "./components/FooterCTA";
@@ -34,8 +35,9 @@ const buildSkills = () => [
   { name: "TypeScript", icon: TechIcons.TypeScript, color: "text-sky-500" },
   { name: "React", icon: TechIcons.React, color: "text-cyan-400" },
   { name: "Vue.js", icon: TechIcons.Vue, color: "text-green-400" },
+  { name: "Next.js", icon: TechIcons.Next, color: "text-black bg-gray-50 rounded-full" },
   { name: "Nuxt.js", icon: TechIcons.Nuxt, color: "text-green-400" },
-  { name: "Python", icon: TechIcons.Python, color: "text-blue-400" },
+  { name: "Python", icon: TechIcons.Python, color: "text-yellow-500" },
   { name: "FastAPI", icon: Server, color: "text-teal-400" },
   { name: "ExpressJS", icon: TechIcons.Express, color: "text-gray-50" },
   { name: "WordPress", icon: TechIcons.wordpress, color: "text-sky-700" },
@@ -50,13 +52,14 @@ const buildSkills = () => [
   { name: "MongoDB", icon: TechIcons.Mongodb, color: "text-green-500" },
   { name: "MySQL", icon: TechIcons.MySql, color: "text-blue-500" },
   { name: "Redis", icon: TechIcons.Redis, color: "text-red-500" },
+  { name: "RabbitMQ", icon: TechIcons.RabbitMq, color: "text-orange-500" },
 ];
 
 const translations = {
   en: {
     profile: {
       name: "Samrong Meas",
-      title: "Full-Stack Web Developer",
+      title: "Full-Stack Developer",
       location: "Phnom Penh, Cambodia",
       email: "meassamrong99@gmail.com",
       avatar: MyPhoto,
@@ -64,11 +67,29 @@ const translations = {
     },
     experiences: [
       {
+        company: "EZ Global .Biz",
+        role: "Software Developer",
+        date: "2025 - Present",
+        description:"Designs, codes, tests, and maintains applications, Server, automating systems and B2B system support and analyzer",
+        points: [
+          "Design and develop high-performance websites and internal systems with a focus on scalability, security, clean user interfaces, and business requirements.",
+          "Develop, maintain, and optimize B2B funding and merchant transaction systems that support businesses of all sizes.",
+          "Build automation tools, bots, and scripts to streamline business processes, improve operational efficiency, and reduce manual workloads.",
+          "Design and develop custom internal applications and utility tools to solve unique business and client workflow challenges.",
+          "Manage the complete software development lifecycle, including requirement analysis, system architecture, implementation, testing, deployment, and ongoing maintenance.",
+          "Collaborate with cross-functional teams to gather requirements and deliver effective technical solutions.",
+          "Troubleshoot, debug, and resolve software issues while ensuring system reliability and high performance.",
+          "Optimize application performance, database queries, and system architecture for scalability and maintainability.",
+          "Write clean, maintainable, and well-documented code following software engineering best practices.",
+          "Research, evaluate, and adopt new technologies, frameworks, and development tools to improve product quality and development efficiency."
+        ]
+      },
+      {
         company: "Freelance Developer",
         role: "Founder & Lead Developer, OsCorp-Dev",
-        date: "2023 - Present",
+        date: "2022 - Present",
         description:
-          "Deliver modern websites, applications, bots, and custom tools for businesses of all sizes.",
+          "Delivery modern websites, applications, bots, and custom tools for businesses of all sizes.",
         points: [
           "Design and build high-performance websites and web apps with a focus on clean UI, scalability, and business-specific needs.",
           "Develop automation bots and smart scripts to streamline operations and reduce manual workload.",
@@ -79,7 +100,7 @@ const translations = {
       {
         company: "Jacques Daniels Solutions Itd",
         role: "IT-Infra and Automaton System Administrator",
-        date: "2022 - Present",
+        date: "2022 - 2025",
         description: "Managing IT infrastructure and automation systems.",
         points: [
           "Setup, Installation, Cloning Virtual machines (VM) with VMware and VCenter, and windows server.",
@@ -449,7 +470,7 @@ const translations = {
   km: {
     profile: {
       name: "Samrong Meas",
-      title: "អ្នកអភិវឌ្ឍវេបសាយ Full-Stack",
+      title: "Full-Stack Developer",
       location: "ភ្នំពេញ កម្ពុជា",
       email: "meassamrong99@gmail.com",
       avatar: MyPhoto,
@@ -457,9 +478,40 @@ const translations = {
     },
     experiences: [
       {
-        company: "Freelance Developer",
+        company: "EZ Global .Biz",
+        role: "អ្នកអភិវឌ្ឍន៍កម្មវិធី",
+        date: "2025 - បច្ចុប្បន្ន",
+        description:"រចនា សរសេរកូដ តេស្ត និងថែទាំកម្មវិធី គ្រប់គ្រង់ម៉ាស៊ីនមេ បង្កើតប្រព័ន្ធស្វ័យប្រវត្តិកម្ម និងការគាំទ្រប្រព័ន្ធ B2B និងបង្កើតឧបករណ៍វិភាគ។",
+        points: [
+          "រចនា និងអភិវឌ្ឍគេហទំព័រ និងប្រព័ន្ធប្រើប្រាស់ក្នុងអង្គការដែលមានប្រសិទ្ធភាពខ្ពស់ ដោយផ្តោតលើភាពអាចពង្រីកបាន សុវត្ថិភាព ចំណុចប្រទាក់អ្នកប្រើ (UI) និងតម្រូវការអាជីវកម្ម។",
+          "អភិវឌ្ឍ ថែទាំ និងកែលម្អប្រព័ន្ធហិរញ្ញប្បទាន (Funding System) និងប្រព័ន្ធប្រតិបត្តិការទូទាត់របស់ Merchant សម្រាប់អាជីវកម្ម B2B ដែលគាំទ្រអាជីវកម្មគ្រប់ទំហំ។",
+          "បង្កើតឧបករណ៍ស្វ័យប្រវត្តិ (Automation Tools), Bot និង Script ដើម្បីសម្រួលដំណើរការការងារ បង្កើនប្រសិទ្ធភាព និងកាត់បន្ថយការងារធ្វើដោយដៃ។",
+          "រចនា និងអភិវឌ្ឍកម្មវិធី និងឧបករណ៍ប្រើប្រាស់ក្នុងអង្គការ ដើម្បីដោះស្រាយតម្រូវការបច្ចេកទេស និងលំហូរការងារជាក់លាក់របស់អាជីវកម្ម និងអតិថិជន។",
+          "គ្រប់គ្រងដំណើរការអភិវឌ្ឍកម្មវិធីទាំងមូល ចាប់ពីការវិភាគតម្រូវការ ការរចនាស្ថាបត្យកម្មប្រព័ន្ធ ការអភិវឌ្ឍ ការធ្វើតេស្ត ការដាក់ឱ្យប្រើប្រាស់ និងការថែទាំបន្ត។",
+          "សហការជាមួយក្រុមការងារផ្នែកផ្សេងៗ ដើម្បីប្រមូលតម្រូវការ និងផ្តល់ដំណោះស្រាយបច្ចេកទេសដែលមានប្រសិទ្ធភាព។",
+          "ស្វែងរក វិភាគ និងដោះស្រាយបញ្ហាបច្ចេកទេស ដើម្បីធានាថាប្រព័ន្ធមានស្ថិរភាព និងដំណើរការបានល្អ។",
+          "កែលម្អប្រសិទ្ធភាពកម្មវិធី មូលដ្ឋានទិន្នន័យ និងស្ថាបត្យកម្មប្រព័ន្ធ ដើម្បីគាំទ្រការពង្រីក និងភាពងាយស្រួលក្នុងការថែទាំ។",
+          "សរសេរកូដដែលមានគុណភាព ស្អាត ងាយថែទាំ និងមានឯកសារគាំទ្រត្រឹមត្រូវ ដោយអនុវត្តតាមស្តង់ដារអភិវឌ្ឍកម្មវិធី។",
+          "សិក្សា វាយតម្លៃ និងអនុវត្តបច្ចេកវិទ្យា Framework និងឧបករណ៍អភិវឌ្ឍន៍ថ្មីៗ ដើម្បីបង្កើនគុណភាពផលិតផល និងប្រសិទ្ធភាពការងារ។"
+        ]
+      },
+      {
+        company: "អ្នកអភិវឌ្ឍន៍កម្មវិធី",
         role: "ស្ថាបនិក និងអ្នកដឹកនាំផ្នែកអភិវឌ្ឍន៍កម្មវិធី, OsCorp-Dev",
-        date: "2023 - បច្ចុប្បន្ន",
+        date: "2022 - បច្ចុប្បន្ន",
+        description:
+          "ផ្តល់ជូនវេបសាយទំនើប កម្មវិធីទូរស័ព្ទ បូត(Bots) និងឧបករណ៍ឌីជីថលតាមតម្រូវការសម្រាប់អាជីវកម្មគ្រប់ទំហំ។",
+        points: [
+          "រចនា និងបង្កើតវេបសាយ និងវេបអាប់(Web Apps) ដែលមានដំណើរការខ្ពស់ ដោយផ្តោតលើ UI ស្អាត អាចពង្រីកវិសាលភាពបាន និងឆ្លើយតបតាមតម្រូវការអាជីវកម្ម។",
+          "អភិវឌ្ឍបូតស្វ័យប្រវត្តិ និងស្គ្រីបឆ្លាតវៃ ដើម្បីកាត់បន្ថយការងារដោយដៃ និងធ្វើឲ្យប្រតិបត្តិការកាន់តែរលូន។",
+          "បង្កើតឧបករណ៍ប្រើប្រាស់ផ្ទៃក្នុង និងកម្មវិធីជំនួយ ដើម្បីដោះស្រាយបញ្ហាបច្ចេកទេស និងលំហូរការងារពិសេសរបស់អតិថិជន។",
+          "គ្រប់គ្រងដំណើរការអភិវឌ្ឍន៍ទាំងមូល ចាប់ពីការស្វែងយល់ពីអតិថិជន និងការរៀបចំស្ថាបត្យកម្ម រហូតដល់ការដាក់ឱ្យដំណើរការ និងការគាំទ្ររយៈពេលវែង។",
+        ],
+      },
+      {
+        company: "អ្នកអភិវឌ្ឍន៍កម្មវិធី ឯករាជ្យ",
+        role: "ស្ថាបនិក និងអ្នកដឹកនាំផ្នែកអភិវឌ្ឍន៍កម្មវិធី, OsCorp-Dev",
+        date: "2022 - បច្ចុប្បន្ន",
         description:
           "ផ្តល់ជូនវេបសាយទំនើប កម្មវិធីទូរស័ព្ទ បូត(Bots) និងឧបករណ៍ឌីជីថលតាមតម្រូវការសម្រាប់អាជីវកម្មគ្រប់ទំហំ។",
         points: [
@@ -472,7 +524,7 @@ const translations = {
       {
         company: "Jacques Daniels Solutions Itd",
         role: "អ្នកគ្រប់គ្រងប្រព័ន្ធ IT-Infra និង Automation",
-        date: "2022 - បច្ចុប្បន្ន",
+        date: "2022 - 2025",
         description:
           "គ្រប់គ្រងហេដ្ឋារចនាសម្ព័ន្ធ IT និងប្រព័ន្ធស្វ័យប្រវត្តិកម្ម។",
         points: [
@@ -875,13 +927,14 @@ const App = () => {
 
   return (
     <div
-      className={`min-h-screen bg-black text-white selection:bg-blue-500/30 ${
+      className={`relative min-h-screen overflow-x-hidden bg-black text-white selection:bg-blue-500/30 ${
         isKhmer ? "font-khmer lang-km" : ""
       }`}
     >
+      <AbstractBackground />
       <Navbar language={language} onToggleLanguage={toggleLanguage} />
 
-      <main className="max-w-6xl mx-auto p-6 lg:p-8 space-y-24">
+      <main className="relative z-10 max-w-6xl mx-auto p-6 lg:p-8 space-y-24">
         <Hero
           profile={active.profile}
           socials={defaultSocials}

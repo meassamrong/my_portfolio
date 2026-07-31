@@ -37,7 +37,8 @@ const sources = {
   Git: "https://cdn.simpleicons.org/git",
   wordpress: "https://cdn.simpleicons.org/wordpress",
   Express: "https://cdn.simpleicons.org/express",
-  Php: "https://cdn.simpleicons.org/php"
+  Php: "https://cdn.simpleicons.org/php",
+  RabbitMq: "https://cdn.simpleicons.org/rabbitmq"
 };
 
 const TechIcons = Object.fromEntries(
